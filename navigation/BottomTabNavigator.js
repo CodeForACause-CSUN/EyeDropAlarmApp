@@ -20,13 +20,11 @@ export default function BottomTabNavigator() {
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="MyDrops"
+        name="My Drops"
         component={MyDropsScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="water" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -35,7 +33,7 @@ export default function BottomTabNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="calendar" color={color} />
           ),
         }}
       />
@@ -59,7 +57,7 @@ function MyDropNavigator() {
       <MyDropScreenStack.Screen
         name="MyDropsScreen"
         component={MyDropsScreen}
-        options={{ headerTitle: "Tab One Title" }}
+        options={{ headerTitle: "My Drop" }}
       />
     </MyDropScreenStack.Navigator>
   );
@@ -73,7 +71,7 @@ function ScheduleScreenNavigator() {
       <ScheduleStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        options={{ headerTitle: "Schedule" }}
       />
     </ScheduleStack.Navigator>
   );
