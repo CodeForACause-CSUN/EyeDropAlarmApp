@@ -25,7 +25,6 @@ export default function TabTwoScreen() {
   const showMode = (currentMode) => {
     if (Platform.OS === 'android') {
       setShow(true);
-      // for iOS, add a button that closes the picker
     }
     setMode(currentMode);
   };
@@ -43,6 +42,7 @@ export default function TabTwoScreen() {
   const [tapperOneSelectedValue, setTapperOneSelectedValue] = useState(1);
   const [tapperTwoSelectedValue, setTapperTwoSelectedValue] = useState(1);
   const [numDaysSelectedValue, setNumDaysSelectedValue] = useState(1);
+  const [whichEye, setWhichEye] = useState("Both");
 
   return (
     <View style={styles.container}>
@@ -56,9 +56,23 @@ export default function TabTwoScreen() {
                   style={styles.dropNameInput}
                   placeholder='Tryamcinalone'/>
                 <Text style={styles.modalText}>Which Eye?</Text>
-                <TextInput placeholderTextColor={'gray'}
-                style={styles.input}
-                placeholder='Both'/>
+
+
+
+                <View style={styles.eyeViewOptions}>
+                  <Text>{whichEye}</Text>
+                  <TouchableOpacity style={styles.eyeOption} onPress={() => setWhichEye("Left")}>
+                    <Text>Left</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.eyeOption} onPress={() => setWhichEye("Both")}>
+                    <Text>Both</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.eyeOption} onPress={() => setWhichEye("Right")}>
+                    <Text>Right</Text>
+                  </TouchableOpacity>
+                </View>
+
+
                 <Text style={styles.modalText}>Start Date?</Text>
                 {/* <Text>selected: {date.toLocaleString()}</Text> */}
                 {show && (
@@ -173,6 +187,17 @@ const styles = StyleSheet.create({
   },
   pickerStyle: {
     backgroundColor: '#2d2e30',
+  },
+  eyeViewOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#2d2e30'
+  },
+  eyeOption: {
+    backgroundColor: '#414245',
+    padding: 10,
+    borderRadius: 2,
+    alignItems: 'center',
   },
   doneButton: {
     backgroundColor: '#414245',
