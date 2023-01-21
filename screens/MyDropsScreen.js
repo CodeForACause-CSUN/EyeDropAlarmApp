@@ -2,11 +2,14 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import AddDrop from '../components/AddDrop';
 
 export default function TabTwoScreen() {
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Drop Screen HEre</Text>
+      <AddDrop/>
     </View>
   );
 }
