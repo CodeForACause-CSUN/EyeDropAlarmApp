@@ -2,29 +2,9 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, Modal, TextInput,Button} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-const TransactionModal = (props) =>{
+const AddDrop = (props) =>{
     return(
-        <Modal visible={false}>
-            <View style={styles.modalView}>
-            <View style={styles.modalViewable}>
-                <Text style={styles.modalTitle}>Add a Transaction</Text>
-                <View>
-                <Text style={styles.modalText}>Transaction Title</Text>
-                <TextInput placeholderTextColor={'gray'}
-                style={styles.input}
-                placeholder='e.g Turkey Sandwich'/>
-                <Text style={styles.modalText}>Transaction Amount</Text>
-                <TextInput placeholderTextColor={'gray'}
-                style={styles.input}
-                placeholder='e.g $13.45'/>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                <Button title="Add" onPress={props.handleTraModal} />
-                <Button title="Cancel" onPress={props.handleTraModal} />
-                </View>
-            </View>
-            </View>
-        </Modal>
+        <Text>Hello</Text>
     )
 }
 const styles = StyleSheet.create({
@@ -101,4 +81,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default TransactionModal;
+export default AddDrop;
