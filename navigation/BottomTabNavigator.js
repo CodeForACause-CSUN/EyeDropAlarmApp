@@ -6,8 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useColorScheme } from "react-native";
 
 import Colors from "../constants/Colors";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import ScheduleScreen from "../screens/ScheduleScreen.js";
+import MyDropsScreen from "../screens/MyDropsScreen.js";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -16,26 +16,24 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="MyDrops"
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="My Drops"
+        component={MyDropsScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="water" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Schedule"
+        component={ScheduleScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="calendar" color={color} />
           ),
         }}
       />
@@ -51,30 +49,30 @@ function TabBarIcon(props) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator();
+const MyDropScreenStack = createStackNavigator();
 
-function TabOneNavigator() {
+function MyDropNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: "Tab One Title" }}
+    <MyDropScreenStack.Navigator>
+      <MyDropScreenStack.Screen
+        name="MyDropsScreen"
+        component={MyDropsScreen}
+        options={{ headerTitle: "My Drop" }}
       />
-    </TabOneStack.Navigator>
+    </MyDropScreenStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator();
+const ScheduleStack = createStackNavigator();
 
-function TabTwoNavigator() {
+function ScheduleScreenNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <ScheduleStack.Navigator>
+      <ScheduleStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        options={{ headerTitle: "Schedule" }}
       />
-    </TabTwoStack.Navigator>
+    </ScheduleStack.Navigator>
   );
 }
