@@ -14,7 +14,7 @@ export const WelcomePage = () => {
     //   greeting = 'Good Evening';
     // }
 
-    // return (
+    // return ( 
     //   <View style={styles.container}>
     //     <Text style={styles.header}>Welcome to EyeDropAlarm</Text>
     //     <Text style={styles.greeting}>{greeting}</Text>
