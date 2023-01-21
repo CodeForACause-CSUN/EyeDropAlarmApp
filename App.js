@@ -7,7 +7,18 @@ import { useLoadedAssets } from "./hooks/useLoadedAssets";
 import Navigation from "./navigation";
 import { useColorScheme } from "react-native";
 
-export default function App() {
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { store } from "./store/store.js";
+
+export default AppWrapper = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+export function App() {
   const isLoadingComplete = useLoadedAssets();
   const colorScheme = useColorScheme();
 
