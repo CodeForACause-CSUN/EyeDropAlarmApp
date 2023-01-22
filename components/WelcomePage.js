@@ -33,7 +33,7 @@ export default function WelcomePage () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#cde38d',
+    backgroundColor: 'lavenderblush',
     //alignItems: 'center',
     justifyContent: 'center',
     padding: 20
