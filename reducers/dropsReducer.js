@@ -21,21 +21,59 @@ class Drop {
   }
 }
 
+// Dummy data STARTS
+//
 const dummyData = [];
-dummyData.push(new Drop(1, "Acular LS", "Left", "Wednesday December 22 2022", 14, 1, 0, 1, "Red"));
 dummyData.push(
-  new Drop(2, "Alcaftadine", "Both", "Friday December 24 2022", 7, 1, 0, 1, "Blue")
+  new Drop(
+    1,
+    "Acular LS",
+    "Left",
+    "Wednesday December 22 2022",
+    14,
+    1,
+    0,
+    1,
+    "Red"
+  )
 );
 dummyData.push(
-  new Drop(3, "Lodoxamide", "Left", "Monday December 28 2022", 30, 1, 0, 1, "White")
+  new Drop(
+    2,
+    "Alcaftadine",
+    "Both",
+    "Friday December 24 2022",
+    7,
+    1,
+    0,
+    1,
+    "Blue"
+  )
+);
+dummyData.push(
+  new Drop(
+    3,
+    "Lodoxamide",
+    "Left",
+    "Monday December 28 2022",
+    30,
+    1,
+    0,
+    1,
+    "White"
+  )
 );
 dummyData.push(
   new Drop(4, "Natacyn", "Right", "Monday January 3 2023", 5, 1, 0, 1, "Yellow")
 );
-dummyData.push(new Drop(5, "Oxervate", "Left", "Wednesday January 5 2023", 3, 1, 0, 1, "Red"));
+dummyData.push(
+  new Drop(5, "Oxervate", "Left", "Wednesday January 5 2023", 3, 1, 0, 1, "Red")
+);
+//
+// Dummy data ENDS
 
 const initialState = {
-  drops: dummyData, //[],
+  drops: dummyData, //[], // currently using dummy data but will be empty array on release
 };
 
 export default function dropsReducer(state = initialState, action) {
@@ -50,6 +88,7 @@ export default function dropsReducer(state = initialState, action) {
         ...state,
         drops: state.drops.map((drop) => {
           if (drop.id === action.payload.drop.id) {
+            // updating the drop based on the id
             return action.payload.drop;
           } else {
             return drop;
@@ -59,7 +98,7 @@ export default function dropsReducer(state = initialState, action) {
     case DELETE_DROP:
       return {
         ...state,
-        drops: state.drops.filter((drop) => drop.id !== action.payload.drop.id),
+        drops: state.drops.filter((drop) => drop.id !== action.payload.drop.id), // deleting the drop based on the id
       };
     case SET_DROPS:
       return {

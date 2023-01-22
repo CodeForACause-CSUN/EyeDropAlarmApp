@@ -1,7 +1,7 @@
 import { CHANGE_LANGUAGE } from "../actions/dropsActions.js";
 
 const initialState = {
-  language: "en",
+  language: "en", // default language, English
 };
 
 export default function settingsReducer(state = initialState, action) {

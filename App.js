@@ -15,10 +15,11 @@ import { changeLanguage } from "./actions/settingsActions.js";
 // Local storage
 import { readData, saveData } from "./store/localStorage.js";
 
-// multi lang stuff
+// multiple languages support
 import "./helpers/i18n";
 import { useTranslation } from "react-i18next";
 
+// Redux store wrapper
 export default AppWrapper = () => {
   return (
     <Provider store={store}>
@@ -32,8 +33,8 @@ export function App() {
   const colorScheme = useColorScheme();
   const dispatch = useDispatch();
 
-  // const events = useSelector((state) => state.events.events);
-  const language = useSelector((state) => state.settings.language);
+  // const drops = useSelector((state) => state.drops.drops);
+
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -41,8 +42,10 @@ export function App() {
     readData((language) => {
       if (language) {
         console.log("found local lang", language);
-        dispatch(changeLanguage(language));
-        i18n
+
+        dispatch(changeLanguage(language)); // if we get language from local storage, we set it to the store
+
+        i18n // and we change the language
           .changeLanguage(language)
           .then(() => {
             console.log("App.js - i18n- language changed to: ", language);
@@ -56,29 +59,21 @@ export function App() {
     readData((drops) => {
       if (drops) {
         console.log("found local drops", drops);
-        dispatch({ type: "SET_DROPS", payload: drops });
+        dispatch({ type: "SET_DROPS", payload: drops }); // if we get drops from local storage, we set them to the store
       } else {
         console.log("No user drops data found in local storage");
       }
     }, "@eye-app-drops"); // reading data from local storage))
   }, []);
 
-  // useEffect(() => {
-  //   i18n
-  //     .changeLanguage(language)
-  //     .then(() => {
-  //       console.log("App.js - i18n- language changed to: ", language);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [language]);
-
   if (!isLoadingComplete) {
+    // splash screen until assets are loaded
     return null;
   } else {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
-        <StatusBar backgroundColor="black" style= "light"/>
+        <StatusBar backgroundColor="black" style="light" />
       </SafeAreaProvider>
     );
   }

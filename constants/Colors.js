@@ -1,6 +1,7 @@
 const tintColorLight = "#2f95dc";
 const tintColorDark = "#fff";
 
+// This is the color scheme for the app
 export default {
   light: {
     text: "#000",
