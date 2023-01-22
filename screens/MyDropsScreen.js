@@ -58,13 +58,6 @@ export default function MyDropsScreen() {
               return (
                 <View key={d.id}>
                   <Text style={styles.title}>{d.name}</Text>
-                  <Text>{d.days}</Text>
-                  <Text>{d.eye}</Text>
-                  <Text>{d.startDate}</Text>
-                  <Text>{d.often}</Text>
-                  <Text>{d.taper}</Text>
-                  <Text>{d.alarms}</Text>
-                  <Text>{d.capColor}</Text>
                 </View>
               );
             })
