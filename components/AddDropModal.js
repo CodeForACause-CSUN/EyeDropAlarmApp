@@ -52,8 +52,23 @@ const AddDropModal = (props) => {
   };
 
   const numbers = [...Array(90).keys()].map((i) => i + 1);
-  const colors = ['Beige', 'Black', 'Blue', 'Brown', 'Clear', 'Gray', 'Green',
-    'Light Green', 'Orange', 'Pink', 'Purple', 'Red', 'Turquoise', 'White', 'Yellow']
+  const colors = [
+    "Beige",
+    "Black",
+    "Blue",
+    "Brown",
+    "Clear",
+    "Gray",
+    "Green",
+    "Light Green",
+    "Orange",
+    "Pink",
+    "Purple",
+    "Red",
+    "Turquoise",
+    "White",
+    "Yellow",
+  ];
   const [name, setSelectedValue] = useState(1);
   const [often, setOftenSelectedValue] = useState(1);
   const [tapperDays, setTapperOneSelectedValue] = useState(1);
@@ -112,12 +127,15 @@ const AddDropModal = (props) => {
                   <Text>Left</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={[styles.eyeOption, {
-                    borderLeftWidth: 2,
-                    borderRightWidth: 2,
-                    paddingRight: 30,
-                    paddingLeft: 30,
-                  }]}
+                  style={[
+                    styles.eyeOption,
+                    {
+                      borderLeftWidth: 2,
+                      borderRightWidth: 2,
+                      paddingRight: 30,
+                      paddingLeft: 30,
+                    },
+                  ]}
                   onPress={() => setWhichEye("Both")}
                 >
                   <Text>Both</Text>
@@ -152,7 +170,8 @@ const AddDropModal = (props) => {
 
               <Text style={styles.modalText}>Cap Color</Text>
               <TouchableOpacity
-              onPress={() => setIsCapColorVisible(!isCapColorVisible)}>
+                onPress={() => setIsCapColorVisible(!isCapColorVisible)}
+              >
                 <Text style={styles.rightAdjustedText}>{capColor}</Text>
               </TouchableOpacity>
               {isCapColorVisible && (
@@ -160,9 +179,7 @@ const AddDropModal = (props) => {
                   <Picker
                     style={styles.pickerStyle}
                     selectedValue={capColor}
-                    onValueChange={(itemValue) =>
-                      setCapColor(itemValue)
-                    }
+                    onValueChange={(itemValue) => setCapColor(itemValue)}
                   >
                     {colors.map((color) => (
                       <Picker.Item
@@ -180,7 +197,6 @@ const AddDropModal = (props) => {
                   </TouchableOpacity>
                 </View>
               )}
-
 
               <Text style={styles.modalText}>Number of Days?</Text>
               <TouchableOpacity
@@ -220,7 +236,9 @@ const AddDropModal = (props) => {
                   setIsPickerVisible(!isPickerVisible);
                 }}
               >
-                <Text style={styles.rightAdjustedText}>{often} times a day</Text>
+                <Text style={styles.rightAdjustedText}>
+                  {often} times a day
+                </Text>
               </TouchableOpacity>
               {isPickerVisible && (
                 <View>
@@ -323,7 +341,19 @@ const AddDropModal = (props) => {
               style={styles.saveCancelStyles}
               onPress={() => {
                 dispatch(
-                  addDrop(new Drop(Math.floor(Math.random() * 10000), name, eye, startDate.toDateString(), days, often, tapperDays, alarms.length, capColor))
+                  addDrop(
+                    new Drop(
+                      Math.floor(Math.random() * 10000),
+                      name,
+                      eye,
+                      startDate.toDateString(),
+                      days,
+                      often,
+                      tapperDays,
+                      alarms.length,
+                      capColor
+                    )
+                  )
                 );
                 props.setModalVisible(!props.modalVisible);
                 clearAllData();
@@ -333,9 +363,6 @@ const AddDropModal = (props) => {
               title="Cancel"
               style={styles.saveCancelStyles}
               onPress={() => {
-                dispatch(
-                  addDrop(new Drop(id, name, eye, startDate, days, often, tapperDays, alarms, capColor))
-                );
                 props.setModalVisible(!props.modalVisible);
                 clearAllData();
               }}
@@ -353,12 +380,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  pickerStyle: {
-  },
+  pickerStyle: {},
   eyeViewOptions: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: 'center',
+    alignItems: "center",
   },
   eyeOption: {
     padding: 10,
@@ -370,11 +396,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 5,
     alignItems: "center",
-    backgroundColor: '#e8e8e8',
+    backgroundColor: "#e8e8e8",
   },
-  tapperGroup: {
-
-  },
+  tapperGroup: {},
   separator: {
     marginVertical: 30,
     height: 1,
@@ -396,17 +420,17 @@ const styles = StyleSheet.create({
   inputGroup: {
     paddingLeft: 20,
     paddingRight: 20,
-    width: '100%',
+    width: "100%",
   },
   dropNameInput: {
     borderWidth: 0,
     fontSize: 25,
     color: "black",
     padding: 8,
-    fontWeight: '700',
+    fontWeight: "700",
     margin: 10,
-    width: '100%',
-    textAlign: 'center',
+    width: "100%",
+    textAlign: "center",
   },
   item: {
     marginBottom: 10,
@@ -426,7 +450,7 @@ const styles = StyleSheet.create({
   rightAdjustedText: {
     textAlign: "right",
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   topGroup: {
     borderColor: "black",
@@ -467,14 +491,14 @@ const styles = StyleSheet.create({
     width: 200,
   },
   currentEyeTextField: {
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: 18,
   },
   doneButtonText: {
     fontSize: 18,
   },
   saveCancelStyles: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
 });
 
