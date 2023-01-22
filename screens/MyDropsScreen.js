@@ -51,6 +51,7 @@ export default function MyDropsScreen() {
       />
 
       <Text style={styles.title}>My Drop Screen</Text>
+      <Text style={styles.title}>strings.how</Text>
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
           {drops.length > 0 ? (
