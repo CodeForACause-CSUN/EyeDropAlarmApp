@@ -2,12 +2,8 @@ export const CHANGE_LANGUAGE = "change_language";
 
 import { saveData } from "../store/localStorage.js";
 
-// multi lang stuff
-import "../helpers/i18n";
-import { useTranslation } from "react-i18next";
-
 export const changeLanguage = (language) => {
-  saveData(JSON.stringify({ language: language }), "@eye-app-language");
+  saveData(JSON.stringify({ language: language }), "@eye-app-language"); // saving the language change in the local storage
   console.log("ACTION - Language changed to ", language);
 
   return {
