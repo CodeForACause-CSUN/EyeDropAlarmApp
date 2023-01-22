@@ -28,7 +28,7 @@ export function App() {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <StatusBar backgroundColor="black" style= "light"/>
       </SafeAreaProvider>
     );
   }

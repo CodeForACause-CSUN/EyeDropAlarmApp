@@ -62,4 +62,5 @@ buck-out/
 .expo/*
 web-build/
 
-*lock*
+*.lock
+*lock.json
