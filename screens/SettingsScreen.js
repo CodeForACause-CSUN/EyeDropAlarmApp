@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
 } from "react-native";
+import { useEffect } from "react";
 
 import SelectDropdown from "react-native-select-dropdown";
 
@@ -14,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 // multi lang stuff
 import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
-import { setLanguage } from "../actions/settingsActions";
+import { changeLanguage } from "../actions/settingsActions";
 import {
   availableLanguages,
   availableLanguagesCodes,
@@ -22,17 +23,15 @@ import {
 
 export default function SettingsScreen({ navigation }) {
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
   const language = useSelector((state) => state.settings.language);
 
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (value) => {
+  const changeLanguagHandler = (language) => {
     i18n
-      .changeLanguage(value)
+      .changeLanguage(language)
       .then(() => {
-        if (language !== value) {
-          console.log("language changed to: ", value);
-          dispatch(setLanguage(value));
-        }
+        console.log("Settings - i18n- language changed to: ", language);
+        dispatch(changeLanguage(language));
       })
       .catch((err) => console.log(err));
   };
@@ -44,7 +43,8 @@ export default function SettingsScreen({ navigation }) {
       <SelectDropdown
         data={availableLanguages}
         onSelect={(selectedItem, index) => {
-          changeLanguage(availableLanguagesCodes[index]);
+          changeLanguagHandler(availableLanguagesCodes[index]);
+          // dispatch(changeLanguage(availableLanguagesCodes[index]));
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           // text represented after item is selected
