@@ -90,6 +90,15 @@ export default function MyDropsScreen() {
       >
         <Text>Seleccionar inglés</Text>
       </Pressable>
+      <Pressable
+        onPress={() => changeLanguage("hi")}
+        style={{
+          backgroundColor: currentLanguage === "hi" ? "#35A850" : "#d373d3",
+          padding: 20,
+        }}
+      >
+        <Text>हिंदी का चयन करें</Text>
+      </Pressable>
 
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
