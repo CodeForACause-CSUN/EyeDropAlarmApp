@@ -80,6 +80,13 @@ const AddDropModal = (props) => {
     }
   }, [name]);
 
+  useEffect(() => {
+    if (Platform.OS === "android") {
+      setShow(false);
+      setAndroidButton(true);
+    }
+  }, [name]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Drop Screen </Text>
@@ -326,6 +333,9 @@ const AddDropModal = (props) => {
               title="Cancel"
               style={styles.saveCancelStyles}
               onPress={() => {
+                dispatch(
+                  addDrop(new Drop(id, name, eye, startDate, days, often, tapperDays, alarms, capColor))
+                );
                 props.setModalVisible(!props.modalVisible);
                 clearAllData();
               }}

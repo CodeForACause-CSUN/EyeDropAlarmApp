@@ -41,6 +41,13 @@ export default function WelcomePage () {
   }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ebebeb',
+    //alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
+  },
   containerText: {
     flex: 1,
     backgroundColor: 'lightgray',
