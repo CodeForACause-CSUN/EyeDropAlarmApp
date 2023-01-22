@@ -17,9 +17,9 @@ import { addDrop } from "../actions/dropsActions";
 const AddDropModal = (props) => {
   const dispatch = useDispatch();
 
-  const [startDate, setDate] = useState(new Date(1598051730000));
+  const [startDate, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [isTapperOneVisible, setIsTapperOneVisible] = useState(false);
   const [isTapperTwoVisible, setIsTapperTwoVisible] = useState(false);
@@ -27,13 +27,13 @@ const AddDropModal = (props) => {
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
-    setShow(true);
+    setShow(false);
     setDate(currentDate);
   };
 
   const showMode = (currentMode) => {
     if (Platform.OS === "android") {
-      setShow(true);
+      setShow(false);
     }
     setMode(currentMode);
   };
@@ -88,7 +88,7 @@ const AddDropModal = (props) => {
 
               <Text style={styles.modalText}>Start Date?</Text>
               {/* <Text>selected: {date.toLocaleString()}</Text> */}
-              {show && (
+              {true && (
                 <DateTimePicker
                   testID="dateTimePicker"
                   value={startDate}
@@ -243,19 +243,19 @@ const AddDropModal = (props) => {
             <Button
               title="Save"
               onPress={() => {
-                // dispatch(
-                //   addDrop({
-                //     id: Math.random().toString(),
-                //     name,
-                //     eye,
-                //     startDate,
-                //     days,
-                //     often,
-                //     taper: { tapperDays, tapperFrequency },
-                //     alarms,
-                //     capColor,
-                //   })
-                // );
+                dispatch(
+                  addDrop({
+                    id: Math.random().toString(),
+                    name,
+                    eye,
+                    startDate,
+                    days,
+                    often,
+                    taper: { tapperDays, tapperFrequency },
+                    alarms,
+                    capColor,
+                  })
+                );
                 props.setModalVisible(!props.modalVisible);
               }}
             />
