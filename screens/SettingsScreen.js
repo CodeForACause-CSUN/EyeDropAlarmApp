@@ -21,6 +21,8 @@ import {
   availableLanguagesCodes,
 } from "../assets/languages/languegesMeta";
 
+import { clearStorage } from "../store/localStorage";
+
 export default function SettingsScreen({ navigation }) {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -58,6 +60,10 @@ export default function SettingsScreen({ navigation }) {
           return item;
         }}
       />
+
+      <Pressable onPress={() => clearStorage()}>
+        <Text>Clear Stored Data</Text>
+      </Pressable>
     </View>
   );
 }

@@ -7,7 +7,7 @@ import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
 
 export const changeLanguage = (language) => {
-  saveData(JSON.stringify({ language: language }));
+  saveData(JSON.stringify({ language: language }), "@eye-app-language");
   console.log("ACTION - Language changed to ", language);
 
   return {

@@ -5,6 +5,10 @@ export const SET_DROPS = "set_drops";
 export const GET_DROPS = "get_drops";
 export const ADD_DROP = "add_drop";
 
+// multi lang stuff
+import "../helpers/i18n";
+import { useTranslation } from "react-i18next";
+
 export const createDrop = (drop) => (dispatch) => {
   dispatch({
     type: CREATE_DROP,
@@ -27,6 +31,7 @@ export const deleteDrop = (drop) => (dispatch) => {
 };
 
 export const setDrops = (drops) => (dispatch) => {
+  saveData(JSON.stringify({ drops: drops }), "@eye-app-drops");
   dispatch({
     type: SET_DROPS,
     payload: { drops },

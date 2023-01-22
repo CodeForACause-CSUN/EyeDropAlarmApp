@@ -2,9 +2,7 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const STORAGE_KEY = "@save_data_eye_app";
-
-export const readData = async (cb) => {
+export const readData = async (cb, STORAGE_KEY) => {
   try {
     const data = await AsyncStorage.getItem(STORAGE_KEY);
 
@@ -22,7 +20,7 @@ export const readData = async (cb) => {
   }
 };
 
-export const saveData = async (data) => {
+export const saveData = async (data, STORAGE_KEY) => {
   try {
     await AsyncStorage.setItem(STORAGE_KEY, data);
     console.log("Data successfully saved. ", data);

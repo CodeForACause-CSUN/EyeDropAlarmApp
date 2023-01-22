@@ -51,7 +51,16 @@ export function App() {
       } else {
         console.log("No user data found in local storage");
       }
-    }); // reading data from local storage
+    }, "@eye-app-language"); // reading data from local storage
+
+    readData((drops) => {
+      if (drops) {
+        console.log("found local drops", drops);
+        dispatch({ type: "SET_DROPS", payload: drops });
+      } else {
+        console.log("No user drops data found in local storage");
+      }
+    }, "@eye-app-drops"); // reading data from local storage))
   }, []);
 
   // useEffect(() => {
