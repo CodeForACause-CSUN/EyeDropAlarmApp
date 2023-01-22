@@ -13,18 +13,15 @@ import { useSelector, useDispatch } from "react-redux";
 // multi lang stuff
 import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
+import { setLanguage } from "../actions/settingsActions";
 
 export default function MyDropsScreen() {
+  const dispatch = useDispatch();
+
   const { t, i18n } = useTranslation();
-  const [currentLanguage, setLanguage] = useState("en");
-  const changeLanguage = (value) => {
-    i18n
-      .changeLanguage(value)
-      .then(() => setLanguage(value))
-      .catch((err) => console.log(err));
-  };
 
   const drops = useSelector((state) => state.drops.drops);
+  const currentLanguage = useSelector((state) => state.settings.language);
 
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -71,34 +68,6 @@ export default function MyDropsScreen() {
       <Text style={{ fontWeight: "bold", fontSize: 25, color: "#33A850" }}>
         {t("this line is translated")}
       </Text>
-
-      <Pressable
-        onPress={() => changeLanguage("en")}
-        style={{
-          backgroundColor: currentLanguage === "en" ? "#33A850" : "#d3d3d3",
-          padding: 20,
-        }}
-      >
-        <Text>Select English</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => changeLanguage("es")}
-        style={{
-          backgroundColor: currentLanguage === "es" ? "#33A850" : "#d3d3d3",
-          padding: 20,
-        }}
-      >
-        <Text>Seleccionar inglés</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => changeLanguage("hi")}
-        style={{
-          backgroundColor: currentLanguage === "hi" ? "#35A850" : "#d373d3",
-          padding: 20,
-        }}
-      >
-        <Text>हिंदी का चयन करें</Text>
-      </Pressable>
 
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>

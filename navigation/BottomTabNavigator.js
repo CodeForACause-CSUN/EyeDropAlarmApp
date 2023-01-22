@@ -8,6 +8,7 @@ import { useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
 import ScheduleScreen from "../screens/ScheduleScreen.js";
 import MyDropsScreen from "../screens/MyDropsScreen.js";
+import SettingsScreen from "../screens/SettingsScreen.js";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -34,6 +35,16 @@ export default function BottomTabNavigator() {
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="settings" color={color} />
           ),
         }}
       />
@@ -74,5 +85,19 @@ function ScheduleScreenNavigator() {
         options={{ headerTitle: "Schedule" }}
       />
     </ScheduleStack.Navigator>
+  );
+}
+
+const SettingsStack = createStackNavigator();
+
+function SettingsScreenNavigator() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerTitle: "Settings" }}
+      />
+    </SettingsStack.Navigator>
   );
 }
