@@ -1,7 +1,11 @@
 
 {
     "translation": {
-      "hello":"Hola",
-      "this line is translated":"esta linea esta traducida"
+      "My Drops":"Mis Gotas",
+      "Schedule":"Horario",
+      "Settings":"Configuración",
+      "Add New Drop":"Agregar Nueva Gotas",
+      "No Drops":"No Gotas",
+      "Select Language":"Seleccionar Idioma"
     }
   }

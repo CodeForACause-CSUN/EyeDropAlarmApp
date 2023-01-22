@@ -13,15 +13,11 @@ import { useSelector, useDispatch } from "react-redux";
 // multi lang stuff
 import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
-import { setLanguage } from "../actions/settingsActions";
 
 export default function MyDropsScreen() {
-  const dispatch = useDispatch();
-
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const drops = useSelector((state) => state.drops.drops);
-  const currentLanguage = useSelector((state) => state.settings.language);
 
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
@@ -59,16 +55,6 @@ export default function MyDropsScreen() {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-
-      <Text style={styles.title}>My Drop Screen</Text>
-
-      <Text style={{ fontWeight: "bold", fontSize: 25, color: "#33A850" }}>
-        {t("hello")}{" "}
-      </Text>
-      <Text style={{ fontWeight: "bold", fontSize: 25, color: "#33A850" }}>
-        {t("this line is translated")}
-      </Text>
-
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
           {drops.length > 0 ? (
@@ -80,7 +66,7 @@ export default function MyDropsScreen() {
               );
             })
           ) : (
-            <Text>No Drops</Text>
+            <Text>{t("No Drops")}</Text>
           )}
         </View>
       </ScrollView>
@@ -96,7 +82,7 @@ export default function MyDropsScreen() {
         }}
       />
 
-      <Button title="Add Drop Data" onPress={() => setModalVisible(true)} />
+      <Button title={t("Add New Drop")} onPress={() => setModalVisible(true)} />
     </View>
   );
 }

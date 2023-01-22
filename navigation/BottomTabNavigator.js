@@ -12,7 +12,12 @@ import SettingsScreen from "../screens/SettingsScreen.js";
 
 const BottomTab = createBottomTabNavigator();
 
+// multi lang stuff
+import "../helpers/i18n";
+import { useTranslation } from "react-i18next";
+
 export default function BottomTabNavigator() {
+  const { t } = useTranslation();
   const colorScheme = useColorScheme();
 
   return (
@@ -21,7 +26,7 @@ export default function BottomTabNavigator() {
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="My Drops"
+        name={t("My Drops")}
         component={MyDropsScreen}
         options={{
           headerShown: false,
@@ -29,7 +34,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Schedule"
+        name={t("Schedule")}
         component={ScheduleScreen}
         options={{
           headerShown: false,
@@ -39,7 +44,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Settings"
+        name={t("Settings")}
         component={SettingsScreen}
         options={{
           headerShown: false,
