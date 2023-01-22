@@ -12,13 +12,13 @@ import SettingsScreen from "../screens/SettingsScreen.js";
 
 const BottomTab = createBottomTabNavigator();
 
-// multi lang stuff
+// Multiple languages support with react-i18next
 import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
 
 export default function BottomTabNavigator() {
-  const { t } = useTranslation();
-  const colorScheme = useColorScheme();
+  const { t } = useTranslation(); // translation function
+  const colorScheme = useColorScheme(); // theme color changer
 
   return (
     <BottomTab.Navigator

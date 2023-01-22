@@ -1,3 +1,6 @@
+// Description: This file contains all the actions related to the drops
+
+// exporting all the actions names
 export const CREATE_DROP = "create_drop";
 export const UPDATE_DROP = "update_drop";
 export const DELETE_DROP = "delete_drop";
@@ -5,10 +8,7 @@ export const SET_DROPS = "set_drops";
 export const GET_DROPS = "get_drops";
 export const ADD_DROP = "add_drop";
 
-// multi lang stuff
-import "../helpers/i18n";
-import { useTranslation } from "react-i18next";
-
+// exporting all the actions
 export const createDrop = (drop) => (dispatch) => {
   dispatch({
     type: CREATE_DROP,
