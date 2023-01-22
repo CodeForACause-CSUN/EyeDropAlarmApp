@@ -29,7 +29,10 @@ const AddDropModal = (props) => {
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
-    setShow(false);
+    setShow(true);
+    if (Platform.OS === "android") {
+      setShow(false);
+    }
     setDate(currentDate);
   };
 
