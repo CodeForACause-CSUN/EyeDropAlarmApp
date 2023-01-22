@@ -12,14 +12,14 @@ import { Picker } from "@react-native-picker/picker";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { addDrop } from "../redux/actions/dropActions";
+import { addDrop } from "../actions/dropsActions";
 
 const AddDropModal = (props) => {
   const dispatch = useDispatch();
 
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [startDate, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [isTapperOneVisible, setIsTapperOneVisible] = useState(false);
   const [isTapperTwoVisible, setIsTapperTwoVisible] = useState(false);
@@ -39,11 +39,14 @@ const AddDropModal = (props) => {
   };
 
   const numbers = [...Array(90).keys()].map((i) => i + 1);
-  const [selectedValue, setSelectedValue] = useState(1);
-  const [tapperOneSelectedValue, setTapperOneSelectedValue] = useState(1);
-  const [tapperTwoSelectedValue, setTapperTwoSelectedValue] = useState(1);
-  const [numDaysSelectedValue, setNumDaysSelectedValue] = useState(1);
-  const [whichEye, setWhichEye] = useState("Both");
+  const [name, setSelectedValue] = useState(1);
+  const [often, setOftenSelectedValue] = useState(1);
+  const [tapperDays, setTapperOneSelectedValue] = useState(1);
+  const [tapperFrequency, setTapperTwoSelectedValue] = useState(1);
+  const [days, setNumDaysSelectedValue] = useState(1);
+  const [eye, setWhichEye] = useState("Both");
+  const [alarms, setAlarms] = useState([]);
+  const [capColor, setCapColor] = useState("white");
 
   return (
     <View style={styles.container}>
@@ -56,12 +59,13 @@ const AddDropModal = (props) => {
               <TextInput
                 placeholderTextColor={"gray"}
                 style={styles.dropNameInput}
+                onChangeText={(text) => setSelectedValue(text)}
                 placeholder="Tryamcinalone"
               />
               <Text style={styles.modalText}>Which Eye?</Text>
 
               <View style={styles.eyeViewOptions}>
-                <Text>{whichEye}</Text>
+                <Text>{eye}</Text>
                 <TouchableOpacity
                   style={styles.eyeOption}
                   onPress={() => setWhichEye("Left")}
@@ -87,7 +91,7 @@ const AddDropModal = (props) => {
               {show && (
                 <DateTimePicker
                   testID="dateTimePicker"
-                  value={date}
+                  value={startDate}
                   mode={"date"}
                   is24Hour={true}
                   onChange={onChange}
@@ -98,15 +102,13 @@ const AddDropModal = (props) => {
               <TouchableOpacity
                 onPress={() => setIsNumDaysVisible(!isNumDaysVisible)}
               >
-                <Text style={styles.rightAdjustedText}>
-                  {numDaysSelectedValue} days
-                </Text>
+                <Text style={styles.rightAdjustedText}>{days} days</Text>
               </TouchableOpacity>
               {isNumDaysVisible && (
                 <View>
                   <Picker
                     style={styles.pickerStyle}
-                    selectedValue={numDaysSelectedValue}
+                    selectedValue={days}
                     onValueChange={(itemValue) =>
                       setNumDaysSelectedValue(itemValue)
                     }
@@ -130,18 +132,20 @@ const AddDropModal = (props) => {
 
               <Text style={styles.modalText}>How Often?</Text>
               <TouchableOpacity
-                onPress={() => setIsPickerVisible(!isPickerVisible)}
+                onPress={() => {
+                  setIsPickerVisible(!isPickerVisible);
+                }}
               >
-                <Text style={styles.rightAdjustedText}>
-                  {selectedValue} times a day
-                </Text>
+                <Text style={styles.rightAdjustedText}>{name} times a day</Text>
               </TouchableOpacity>
               {isPickerVisible && (
                 <View>
                   <Picker
                     style={styles.pickerStyle}
-                    selectedValue={selectedValue}
-                    onValueChange={(itemValue) => setSelectedValue(itemValue)}
+                    selectedValue={name}
+                    onValueChange={(itemValue) =>
+                      setOftenSelectedValue(itemValue)
+                    }
                   >
                     {numbers.map((number) => (
                       <Picker.Item
@@ -167,14 +171,14 @@ const AddDropModal = (props) => {
                   onPress={() => setIsTapperOneVisible(!isTapperOneVisible)}
                 >
                   <Text style={styles.rightAdjustedText}>
-                    {tapperOneSelectedValue} drops
+                    {tapperDays} drops
                   </Text>
                 </TouchableOpacity>
                 {isTapperOneVisible && (
                   <View>
                     <Picker
                       style={styles.pickerStyle}
-                      selectedValue={tapperOneSelectedValue}
+                      selectedValue={tapperDays}
                       onValueChange={(itemValue) =>
                         setTapperOneSelectedValue(itemValue)
                       }
@@ -200,14 +204,14 @@ const AddDropModal = (props) => {
                   onPress={() => setIsTapperTwoVisible(!isTapperTwoVisible)}
                 >
                   <Text style={styles.rightAdjustedText}>
-                    every {tapperTwoSelectedValue} days
+                    every {tapperFrequency} days
                   </Text>
                 </TouchableOpacity>
                 {isTapperTwoVisible && (
                   <View>
                     <Picker
                       style={styles.pickerStyle}
-                      selectedValue={tapperTwoSelectedValue}
+                      selectedValue={tapperFrequency}
                       onValueChange={(itemValue) =>
                         setTapperTwoSelectedValue(itemValue)
                       }
@@ -231,17 +235,28 @@ const AddDropModal = (props) => {
               </View>
             </View>
             <Button
+              title="Cancel"
+              onPress={() => {
+                props.setModalVisible(!props.modalVisible);
+              }}
+            />
+            <Button
               title="Save"
               onPress={() => {
-                dispatch(
-                  createEvent({
-                    uid: uuidv4(),
-                    userID: userID,
-                    title,
-                    description,
-                    date: new Date(),
-                  })
-                );
+                // dispatch(
+                //   addDrop({
+                //     id: Math.random().toString(),
+                //     name,
+                //     eye,
+                //     startDate,
+                //     days,
+                //     often,
+                //     taper: { tapperDays, tapperFrequency },
+                //     alarms,
+                //     capColor,
+                //   })
+                // );
+                props.setModalVisible(!props.modalVisible);
               }}
             />
           </View>
