@@ -22,17 +22,17 @@ class Drop {
 }
 
 const dummyData = [];
-dummyData.push(new Drop(1, "Drop 1", "Left", "2020-01-01", 30, 1, 0, 1, "red"));
+dummyData.push(new Drop(1, "Acular LS", "Left", "Wednesday December 22 2022", 14, 1, 0, 1, "Red"));
 dummyData.push(
-  new Drop(2, "Drop 2", "Right", "2020-01-01", 30, 1, 0, 1, "blue")
+  new Drop(2, "Alcaftadine", "Both", "Friday December 24 2022", 7, 1, 0, 1, "Blue")
 );
 dummyData.push(
-  new Drop(3, "Drop 3", "Left", "2020-01-01", 30, 1, 0, 1, "green")
+  new Drop(3, "Lodoxamide", "Left", "Monday December 28 2022", 30, 1, 0, 1, "White")
 );
 dummyData.push(
-  new Drop(4, "Drop 4", "Right", "2020-01-01", 30, 1, 0, 1, "yellow")
+  new Drop(4, "Natacyn", "Right", "Monday January 3 2023", 5, 1, 0, 1, "Yellow")
 );
-dummyData.push(new Drop(5, "Drop 5", "Left", "2020-01-01", 30, 1, 0, 1, "red"));
+dummyData.push(new Drop(5, "Oxervate", "Left", "Wednesday January 5 2023", 3, 1, 0, 1, "Red"));
 
 const initialState = {
   drops: dummyData, //[],
