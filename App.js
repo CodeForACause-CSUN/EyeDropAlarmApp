@@ -73,7 +73,7 @@ export function App() {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
-        <StatusBar backgroundColor="black" style="light" />
+        <StatusBar />
       </SafeAreaProvider>
     );
   }

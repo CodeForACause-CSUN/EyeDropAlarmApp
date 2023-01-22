@@ -16,8 +16,10 @@ import "../helpers/i18n";
 import { useTranslation } from "react-i18next";
 
 export default function MyDropsScreen() {
+  // t variable can be used to wrap english text to translate to other languages
   const { t } = useTranslation();
 
+  // Populates drops variable from state using useSelector
   const drops = useSelector((state) => state.drops.drops);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,11 +31,13 @@ export default function MyDropsScreen() {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
+      {/* List view for current drops */}
       <Text style={styles.title}>My Drops</Text>
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
           {drops.length > 0 ? (
             drops.map((d) => {
+              {/* Lists all data about medication alarm */}
               return (
                 <View style={styles.dropListItem} key={d.id}>
                   <Text style={styles.title}>{d.name}</Text>
@@ -48,11 +52,12 @@ export default function MyDropsScreen() {
               );
             })
           ) : (
+            // One example of how you can use t variable to translate text.
             <Text>{t("No Drops")}</Text>
           )}
         </View>
       </ScrollView>
-
+      
       <Button title={t("Add New Drop")} onPress={() => setModalVisible(true)} />
     </View>
   );
