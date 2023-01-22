@@ -4,6 +4,7 @@ import {
   Modal,
   TextInput,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Text, View } from "../components/Themed";
@@ -24,18 +25,15 @@ const AddDropModal = (props) => {
   const [isTapperOneVisible, setIsTapperOneVisible] = useState(false);
   const [isTapperTwoVisible, setIsTapperTwoVisible] = useState(false);
   const [isNumDaysVisible, setIsNumDaysVisible] = useState(false);
+  const [androidButton, setAndroidButton] = useState(false);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
-    setShow(false);
-    setDate(currentDate);
-  };
-
-  const showMode = (currentMode) => {
+    setShow(true);
     if (Platform.OS === "android") {
       setShow(false);
     }
-    setMode(currentMode);
+    setDate(currentDate);
   };
 
   const numbers = [...Array(90).keys()].map((i) => i + 1);
@@ -47,6 +45,13 @@ const AddDropModal = (props) => {
   const [eye, setWhichEye] = useState("Both");
   const [alarms, setAlarms] = useState([]);
   const [capColor, setCapColor] = useState("white");
+
+  useEffect(() => {
+    if (Platform.OS === "android") {
+      setShow(false);
+      setAndroidButton(true);
+    }
+  }, [name]);
 
   return (
     <View style={styles.container}>
@@ -87,8 +92,16 @@ const AddDropModal = (props) => {
               </View>
 
               <Text style={styles.modalText}>Start Date?</Text>
-              {/* <Text>selected: {date.toLocaleString()}</Text> */}
-              {true && (
+              {androidButton && (
+                <Pressable
+                  style={{ color: "red" }}
+                  onPress={() => setShow(true)}
+                >
+                  <Text>{startDate.toDateString()}</Text>
+                </Pressable>
+              )}
+
+              {show && (
                 <DateTimePicker
                   testID="dateTimePicker"
                   value={startDate}

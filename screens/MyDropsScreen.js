@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Button } from "react-native";
+import { StyleSheet, ScrollView, Button, Pressable } from "react-native";
 import { useState, useEffect, useRef } from "react";
 
 import * as Device from "expo-device";
@@ -10,7 +10,13 @@ import AddDropModal from "../components/AddDropModal";
 // Redux stuff
 import { useSelector, useDispatch } from "react-redux";
 
+// multi lang stuff
+import "../helpers/i18n";
+import { useTranslation } from "react-i18next";
+
 export default function MyDropsScreen() {
+  const { t } = useTranslation();
+
   const drops = useSelector((state) => state.drops.drops);
 
   const [expoPushToken, setExpoPushToken] = useState("");
@@ -49,8 +55,6 @@ export default function MyDropsScreen() {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-
-      <Text style={styles.title}>My Drop Screen</Text>
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
           {drops.length > 0 ? (
@@ -62,7 +66,7 @@ export default function MyDropsScreen() {
               );
             })
           ) : (
-            <Text>No Drops</Text>
+            <Text>{t("No Drops")}</Text>
           )}
         </View>
       </ScrollView>
@@ -78,7 +82,7 @@ export default function MyDropsScreen() {
         }}
       />
 
-      <Button title="Add Drop Data" onPress={() => setModalVisible(true)} />
+      <Button title={t("Add New Drop")} onPress={() => setModalVisible(true)} />
     </View>
   );
 }

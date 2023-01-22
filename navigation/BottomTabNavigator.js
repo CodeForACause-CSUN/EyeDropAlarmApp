@@ -8,10 +8,16 @@ import { useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
 import ScheduleScreen from "../screens/ScheduleScreen.js";
 import MyDropsScreen from "../screens/MyDropsScreen.js";
+import SettingsScreen from "../screens/SettingsScreen.js";
 
 const BottomTab = createBottomTabNavigator();
 
+// multi lang stuff
+import "../helpers/i18n";
+import { useTranslation } from "react-i18next";
+
 export default function BottomTabNavigator() {
+  const { t } = useTranslation();
   const colorScheme = useColorScheme();
 
   return (
@@ -20,7 +26,7 @@ export default function BottomTabNavigator() {
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="My Drops"
+        name={t("My Drops")}
         component={MyDropsScreen}
         options={{
           headerShown: false,
@@ -28,12 +34,22 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Schedule"
+        name={t("Schedule")}
         component={ScheduleScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name={t("Settings")}
+        component={SettingsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="settings" color={color} />
           ),
         }}
       />
@@ -74,5 +90,19 @@ function ScheduleScreenNavigator() {
         options={{ headerTitle: "Schedule" }}
       />
     </ScheduleStack.Navigator>
+  );
+}
+
+const SettingsStack = createStackNavigator();
+
+function SettingsScreenNavigator() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerTitle: "Settings" }}
+      />
+    </SettingsStack.Navigator>
   );
 }
