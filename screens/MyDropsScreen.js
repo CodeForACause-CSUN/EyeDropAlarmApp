@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Button } from "react-native";
+import { StyleSheet, ScrollView, Button, Pressable } from "react-native";
 import { useState, useEffect, useRef } from "react";
 
 import * as Device from "expo-device";
@@ -10,7 +10,20 @@ import AddDropModal from "../components/AddDropModal";
 // Redux stuff
 import { useSelector, useDispatch } from "react-redux";
 
+// multi lang stuff
+import "../helpers/i18n";
+import { useTranslation } from "react-i18next";
+
 export default function MyDropsScreen() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguage, setLanguage] = useState("en");
+  const changeLanguage = (value) => {
+    i18n
+      .changeLanguage(value)
+      .then(() => setLanguage(value))
+      .catch((err) => console.log(err));
+  };
+
   const drops = useSelector((state) => state.drops.drops);
 
   const [expoPushToken, setExpoPushToken] = useState("");
@@ -51,7 +64,33 @@ export default function MyDropsScreen() {
       />
 
       <Text style={styles.title}>My Drop Screen</Text>
-      <Text style={styles.title}>strings.how</Text>
+
+      <Text style={{ fontWeight: "bold", fontSize: 25, color: "#33A850" }}>
+        {t("hello")}{" "}
+      </Text>
+      <Text style={{ fontWeight: "bold", fontSize: 25, color: "#33A850" }}>
+        {t("this line is translated")}
+      </Text>
+
+      <Pressable
+        onPress={() => changeLanguage("en")}
+        style={{
+          backgroundColor: currentLanguage === "en" ? "#33A850" : "#d3d3d3",
+          padding: 20,
+        }}
+      >
+        <Text>Select English</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => changeLanguage("es")}
+        style={{
+          backgroundColor: currentLanguage === "es" ? "#33A850" : "#d3d3d3",
+          padding: 20,
+        }}
+      >
+        <Text>Seleccionar inglés</Text>
+      </Pressable>
+
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
           {drops.length > 0 ? (
