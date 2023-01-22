@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add react-native-select-dropdown
+  /usr/local/bin/node /usr/local/bin/yarn add @react-native-async-storage/async-storage
 
 PATH: 
   /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/opt/homebrew/bin:/opt/homebrew/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/jeel/workSpace_zk/app-projects/eye-drop-app/node_modules/@expo/cli/node_modules/crypto-random-string/index.js'
+  Error: EACCES: permission denied, unlink '/Users/jeel/workSpace_zk/app-projects/eye-drop-app/node_modules/@expo/cli/node_modules/is-stream/index.d.ts'
 
 npm manifest: 
   {
@@ -47,6 +47,7 @@ npm manifest:
       "react-native-reanimated": "~2.12.0",
       "react-native-safe-area-context": "4.4.1",
       "react-native-screens": "~3.18.0",
+      "react-native-select-dropdown": "^3.2.1",
       "react-native-web": "~0.18.7",
       "react-redux": "^8.0.5",
       "redux": "^4.2.0",
@@ -5967,6 +5968,11 @@ Lockfile:
     dependencies:
       react-freeze "^1.0.0"
       warn-once "^0.1.0"
+  
+  react-native-select-dropdown@^3.2.1:
+    version "3.2.1"
+    resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-3.2.1.tgz#3e204834fa68549c62e0ef46c6f6270740fc8d18"
+    integrity sha512-4kLmjm3z9JUzIw98oKdQYvk8XsxhNg5NfKN112m1oIufu+6w2HcPw438rVpXzrWntvs9ZLf8Za6ZQO6GqZHdzA==
   
   react-native-web@~0.18.7:
     version "0.18.10"
