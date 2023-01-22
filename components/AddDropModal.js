@@ -32,7 +32,8 @@ class Drop {
 const AddDropModal = (props) => {
   const dispatch = useDispatch();
 
-  const [startDate, setDate] = useState(new Date());
+  // Variables to initialize the state of views (hidden)
+  // Views such as number pickers and calendar on android
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(true);
   const [isPickerVisible, setIsPickerVisible] = useState(false);
@@ -41,7 +42,9 @@ const AddDropModal = (props) => {
   const [isNumDaysVisible, setIsNumDaysVisible] = useState(false);
   const [isCapColorVisible, setIsCapColorVisible] = useState(false);
   const [androidButton, setAndroidButton] = useState(false);
+  //
 
+  // Quick fix for calendar view problem on android
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(true);
@@ -50,6 +53,7 @@ const AddDropModal = (props) => {
     }
     setDate(currentDate);
   };
+  //
 
   const numbers = [...Array(90).keys()].map((i) => i + 1);
   const colors = [
@@ -69,6 +73,10 @@ const AddDropModal = (props) => {
     "White",
     "Yellow",
   ];
+
+  // Drop values, later on initialize a Drop() object
+  // with this data.
+  const [startDate, setDate] = useState(new Date());
   const [name, setSelectedValue] = useState(1);
   const [often, setOftenSelectedValue] = useState(1);
   const [tapperDays, setTapperOneSelectedValue] = useState(1);
@@ -78,6 +86,9 @@ const AddDropModal = (props) => {
   const [alarms, setAlarms] = useState([]);
   const [capColor, setCapColor] = useState("Beige");
 
+  // When saving and canceling the modal for
+  // adding a new drop, clear inputfields back
+  // to default values
   const clearAllData = () => {
     setDate(new Date());
     setSelectedValue(1);
@@ -88,13 +99,7 @@ const AddDropModal = (props) => {
     setWhichEye("Both");
   };
 
-  useEffect(() => {
-    if (Platform.OS === "android") {
-      setShow(false);
-      setAndroidButton(true);
-    }
-  }, [name]);
-
+  // Displaying calendar view for android correctlly
   useEffect(() => {
     if (Platform.OS === "android") {
       setShow(false);
@@ -103,6 +108,8 @@ const AddDropModal = (props) => {
   }, [name]);
 
   return (
+    // Add Drop Screen options used to add a new item to
+    // My Drops list view with these options.
     <View style={styles.container}>
       <Text style={styles.title}>My Drop Screen </Text>
       <Modal animationType="slide" visible={props.modalVisible}>
@@ -118,6 +125,7 @@ const AddDropModal = (props) => {
               />
               <Text style={styles.modalText}>Which Eye?</Text>
 
+              {/* Left | Both | and Right buttons that update the true values display on left */}
               <View style={styles.eyeViewOptions}>
                 <Text style={styles.currentEyeTextField}>{eye}</Text>
                 <TouchableOpacity
@@ -148,6 +156,7 @@ const AddDropModal = (props) => {
                 </TouchableOpacity>
               </View>
 
+              {/* Conditional for android platoform since error with default DateTimePicker */}
               <Text style={styles.modalText}>Start Date?</Text>
               {androidButton && (
                 <Pressable
@@ -174,6 +183,7 @@ const AddDropModal = (props) => {
               >
                 <Text style={styles.rightAdjustedText}>{capColor}</Text>
               </TouchableOpacity>
+              {/* Hidden values for cap color choices */}
               {isCapColorVisible && (
                 <View>
                   <Picker
@@ -336,6 +346,8 @@ const AddDropModal = (props) => {
                 )}
               </View>
             </View>
+            {/* When user clicks save, create new Drop() object and add it to state using dispatch */}
+            {/* Then clear data from input fields */}
             <Button
               title="Save"
               style={styles.saveCancelStyles}
@@ -359,6 +371,7 @@ const AddDropModal = (props) => {
                 clearAllData();
               }}
             />
+            {/* Clear input fields if user decides not to add a drop anymore. */}
             <Button
               title="Cancel"
               style={styles.saveCancelStyles}
