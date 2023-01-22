@@ -5,6 +5,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 import { Text, View } from "../components/Themed";
+import AddDropModal from "../components/AddDropModal";
 
 // Redux stuff
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +17,8 @@ export default function MyDropsScreen() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
@@ -42,6 +45,11 @@ export default function MyDropsScreen() {
 
   return (
     <View style={styles.container}>
+      <AddDropModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+
       <Text style={styles.title}>My Drop Screen</Text>
       <ScrollView style={styles.ScrollContainer}>
         <View style={styles.eventsContainer}>
@@ -76,6 +84,8 @@ export default function MyDropsScreen() {
           console.log("Notification scheduled - Button");
         }}
       />
+
+      <Button title="Add Drop Data" onPress={() => setModalVisible(true)} />
     </View>
   );
 }
@@ -95,7 +105,6 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
   },
-
 });
 
 async function schedulePushNotification(title, body, data, seconds) {
