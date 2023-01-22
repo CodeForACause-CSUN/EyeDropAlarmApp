@@ -1,6 +1,9 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, Modal } from "react-native";
+import WelcomePage from './WelcomePage';
 
 export default function WelcomeModal() {
-  return <Text style={{ color: "white" }}>Welcome</Text>;
+  return <Modal>
+    <WelcomePage/>
+  </Modal>
 }
